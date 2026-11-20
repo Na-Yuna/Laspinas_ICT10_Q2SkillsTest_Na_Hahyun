@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tab Title -->
+    <title>Element Checker</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="BLUE TEST TUBE LOGO.png">
+
+    <!-- PyScript -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2026.7.3/core.css">
+    <script type="module" src="https://pyscript.net/releases/2026.7.3/core.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+        /* Body */
+        body {
+            margin: 0;
+            font-family: 'Nunito', sans-serif;
+            background: #f0f8fe;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 90px 15px 65px;
+        }
+
+        /* Navigation Bar Btn Type*/
+        .navbar {
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            z-index: 10;
+        }
+
+        .navbar a {
+            display: inline-block;
+            padding: 10px 22px;
+            border-radius: 25px;
+            background-color: rgba(118, 165, 219, 0.85);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Change Navbar Btn Color on Hover */
+        .navbar a:hover {
+            background-color: #447fc6;
+        }
+
+        /* Main Container */
+        #verification {
+            max-width: 650px;
+            width: 100%;
+            padding: 10px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Main Card */
+        .main-card {
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: rgb(255, 255, 255);
+        }
+
+        /* Card Heading */
+        .card-heading {
+            background: rgba(118, 165, 219, 0.85);
+            color: white;
+            text-align: center;
+            padding: 18px;
+        }
+
+        /* Card Heading Title */
+        .card-heading h2 {
+            font-size: 25px;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+
+        /* Card Heading Subtitle */
+        .card-heading p {
+            font-size: 12px;
+        }
+
+        /* Instructions */
+        .instructions {
+            background-color: #d2f0f7;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        /* Instructions Text */
+        .instructions p {
+            margin: 0;
+        }
+
+        /* Form Labels */
+        .form-label {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        /* Input Field */
+        .form-control {
+            border-radius: 6px;
+            font-size: 14px;
+            padding: 10px;
+        }
+
+        .form-control:focus {
+            border-color: rgba(118, 165, 219, 0.85);
+            box-shadow: 0 0 5px rgba(8, 117, 245, 0.3);
+        }
+
+        /* Search Button */
+        .generate-button {
+            width: 100%;
+            background-color: rgba(118, 165, 219, 0.85);
+            color: white;
+            font-weight: 800;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Change Btn Color on Hover */
+        .generate-button:hover {
+            background-color: #447fc6;
+            color: white;
+        }
+
+        /* Result Heading */
+        .result-heading {
+            color: rgba(118, 165, 219, 0.85);
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        /* Result Box */
+        #result {
+            background-color: #f2f2f7;
+            border-left: 4px solid rgba(118, 165, 219, 0.85);
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 13px;
+            color: #333333;
+            min-height: 65px;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-family: 'Nunito', sans-serif;
+            text-align: center;
+            color: #696b6e;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Footer Text */
+        footer p {
+            margin: 0;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="index.html">← Back to Main Menu</a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container" id="verification">
+        <div class="card main-card">
+
+            <!-- Card Heading -->
+            <div class="card-heading">
+                <h2>Non-Metal Elements</h2>
+                <p class="mb-0">Periodic Table Information Finder</p>
+            </div>
+
+            <!-- Card Body -->
+            <div class="card-body p-4">
+
+                <!-- Instructions -->
+                <div class="instructions">
+                    <p><b>Instructions:</b></p>
+                    <p>Enter the symbol of a non-metal element (Examples: H, O, Cl, Ne, Xe).</p>
+                </div>
+
+                <!-- Form -->
+                <main>
+                    <form onsubmit="return false;">
+
+                        <!-- Element Symbol -->
+                        <div class="mb-3">
+                            <label for="element-input" class="form-label">
+                                ♧ Element Symbol
+                            </label>
+
+                            <input type="text"
+                                   class="form-control"
+                                   id="element-input"
+                                   placeholder="Enter element symbol">
+                        </div>
+
+                        <!-- Submit Button -->
+                        <input type="button"
+                               py-click="get_element_info"
+                               value="Check Details"
+                               class="btn generate-button">
+
+                    </form>
+
+                    <!-- Result -->
+                    <p class="result-heading mt-3 mb-1">▣ Result</p>
+
+                    <div id="result">
+                        Your element information will appear here.
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ICT - SkillsTest - 2nd Quarter</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Python -->
+    <script type="py" src="main.py"></script>
+
+</body>
+</html>
